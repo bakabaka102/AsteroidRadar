@@ -1,30 +1,32 @@
 package com.udacity.asteroidradar.detail
 
-
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
 import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.basecontent.BaseFragment
 import com.udacity.asteroidradar.databinding.FragmentDetailBinding
 
-class DetailFragment : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val binding = FragmentDetailBinding.inflate(inflater)
-        binding.lifecycleOwner = this
+class DetailFragment : BaseFragment<FragmentDetailBinding>() {
 
+    override fun getViewBinding() = R.layout.fragment_detail
+
+    override fun initData() {
+        mFragmentBinding.lifecycleOwner = this
         val asteroid = DetailFragmentArgs.fromBundle(requireArguments()).selectedAsteroid
+        mFragmentBinding.asteroid = asteroid
+    }
 
-        binding.asteroid = asteroid
+    override fun initViews() {
 
-        binding.helpButton.setOnClickListener {
+    }
+
+    override fun initActions() {
+        mFragmentBinding.helpButton.setOnClickListener {
             displayAstronomicalUnitExplanationDialog()
         }
+    }
 
-        return binding.root
+    override fun initObserver() {
+
     }
 
     private fun displayAstronomicalUnitExplanationDialog() {
