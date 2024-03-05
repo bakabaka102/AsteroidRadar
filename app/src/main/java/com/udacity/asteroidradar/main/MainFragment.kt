@@ -55,16 +55,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     override fun initData() {
-
+        mFragmentBinding.lifecycleOwner = this
     }
 
     override fun initViews() {
-        mFragmentBinding.apply {
-            this.lifecycleOwner = this@MainFragment
-            this.viewModel = this@MainFragment.viewModel
-        }
-        mFragmentBinding.lifecycleOwner = this
-
         mFragmentBinding.viewModel = viewModel
     }
 
