@@ -16,9 +16,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         viewModelScope.launch {
-            //loadPictureOfDay()
             repository.loadPictureOfDay()
-            //repository.loadAsteroidList()
+            repository.loadAsteroidList()
         }
     }
 

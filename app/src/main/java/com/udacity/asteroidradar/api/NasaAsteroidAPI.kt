@@ -44,12 +44,12 @@ object NasaAsteroidAPI {
         return Retrofit.Builder().baseUrl(Constants.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            /*.addConverterFactory(MoshiConverterFactory.create(moshi))*/
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
     }
 
-    val retrofitService: IAsteroidService by lazy {
-        retrofitInstance().create(IAsteroidService::class.java)
+    val retrofitService: INasaAsteroidApi by lazy {
+        retrofitInstance().create(INasaAsteroidApi::class.java)
     }
 }
