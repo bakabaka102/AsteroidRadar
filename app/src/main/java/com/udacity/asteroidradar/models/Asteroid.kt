@@ -1,8 +1,10 @@
-package com.udacity.asteroidradar
+package com.udacity.asteroidradar.models
 
 import android.os.Parcelable
+import androidx.room.Entity
 import kotlinx.parcelize.Parcelize
 
+@Entity
 @Parcelize
 data class Asteroid(
     val id: Long,

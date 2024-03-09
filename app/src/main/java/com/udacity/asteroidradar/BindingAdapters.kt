@@ -4,7 +4,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.squareup.picasso.Picasso
+import com.udacity.asteroidradar.utils.Logger
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
@@ -44,6 +44,7 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 
 @BindingAdapter("bindPictureFromUrl")
 fun bindUriToImageView(imageView: ImageView, strUrl: String?) {
+    Logger.d("_pictureOfDay: has valueUrl of image: $strUrl")
     Glide.with(imageView.context)
         .load(strUrl)
         .placeholder(R.drawable.placeholder_picture_of_day)

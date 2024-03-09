@@ -7,17 +7,15 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.basecontent.BaseFragment
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 
 class MainFragment : BaseFragment<FragmentMainBinding>() {
 
-    private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this)[MainViewModel::class.java]
-    }
+    private val mainViewModel: MainViewModel by viewModels()
 
     private val menuProvider = object : MenuProvider {
 
@@ -59,7 +57,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     override fun initViews() {
-        mFragmentBinding.viewModel = viewModel
+        mFragmentBinding.viewModel = mainViewModel
     }
 
     override fun initActions() {

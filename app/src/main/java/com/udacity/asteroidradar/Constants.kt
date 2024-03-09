@@ -17,6 +17,8 @@ object Constants {
     const val COLUMN_DISTANCE_FROM_EARTH = "distance_from_earth"
     const val COLUMN_IS_POTENTIALLY_HAZARDOUS = "is_potentially_hazardous"
 
+    const val PICTURE_OF_DAY_TABLE = "picture_of_day"
+
     //Retrofit
     const val BASE_URL = "https://api.nasa.gov/"
     const val VALUE_OF_API_KEY = "Wm9fMUOloYCkeBxLuGBRL9lCyU1sAXrZeFNHjdeZ"

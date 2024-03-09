@@ -13,7 +13,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 
-object AsteroidAPI {
+object NasaAsteroidAPI {
 
     private fun retrofitInstance(): Retrofit {
         val okHttpClient = OkHttpClient.Builder().readTimeout(5, TimeUnit.SECONDS)
