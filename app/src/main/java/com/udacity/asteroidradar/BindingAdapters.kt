@@ -1,9 +1,11 @@
 package com.udacity.asteroidradar
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.udacity.asteroidradar.db.AsteroidEntity
 import com.udacity.asteroidradar.utils.Logger
 
 @BindingAdapter("statusIcon")
@@ -12,6 +14,15 @@ fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
         imageView.setImageResource(R.drawable.ic_status_potentially_hazardous)
     } else {
         imageView.setImageResource(R.drawable.ic_status_normal)
+    }
+}
+
+@BindingAdapter("statusIconLoading")
+fun View.statusIconLoading(data: List<AsteroidEntity>?) {
+    this.visibility = if (!data.isNullOrEmpty()) {
+        View.GONE
+    } else {
+        View.VISIBLE
     }
 }
 
