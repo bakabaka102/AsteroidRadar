@@ -65,13 +65,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     override fun initViews() {
         mFragmentBinding.viewModel = mainViewModel
         val linearLayoutManager = LinearLayoutManager(requireContext())
-        val decorationItem = DividerItemDecoration(requireContext(), DividerItemDecoration.HORIZONTAL)
+        val decorationItem =
+            DividerItemDecoration(requireContext(), DividerItemDecoration.HORIZONTAL)
         mFragmentBinding.asteroidRecycler.layoutManager = linearLayoutManager
         mFragmentBinding.asteroidRecycler.addItemDecoration(decorationItem)
         mFragmentBinding.asteroidRecycler.adapter = asteroidAdapter
-        mainViewModel.asteroidList.observe(viewLifecycleOwner) {
-            asteroidAdapter.submitList(it)
-        }
     }
 
     override fun initActions() {
@@ -81,7 +79,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     override fun initObserver() {
-
+        mainViewModel.asteroidList.observe(viewLifecycleOwner) {
+            asteroidAdapter.submitList(it)
+        }
     }
 
     override fun getViewBinding() = R.layout.fragment_main
