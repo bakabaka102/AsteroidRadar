@@ -9,13 +9,17 @@ import android.widget.Toast
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.basecontent.BaseFragment
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
+import com.udacity.asteroidradar.db.AsteroidDataType
 
 class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     private val mainViewModel: MainViewModel by viewModels()
+    private val asteroidAdapter: AsteroidAdapter = AsteroidAdapter()
 
     private val menuProvider = object : MenuProvider {
 
@@ -26,16 +30,19 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
             return when (menuItem.itemId) {
                 R.id.nextWeekAsteroids -> {
+                    mainViewModel.onChangeAsteroidDataType(AsteroidDataType.WEEK)
                     Toast.makeText(requireContext(), "Next week", Toast.LENGTH_SHORT).show()
                     true
                 }
 
                 R.id.todayAsteroids -> {
                     Toast.makeText(requireContext(), "Today", Toast.LENGTH_SHORT).show()
+                    mainViewModel.onChangeAsteroidDataType(AsteroidDataType.TODAY)
                     true
                 }
 
                 R.id.savedAsteroids -> {
+                    mainViewModel.onChangeAsteroidDataType(AsteroidDataType.ALL_TIME)
                     Toast.makeText(requireContext(), "Save", Toast.LENGTH_SHORT).show()
                     true
                 }
@@ -45,7 +52,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             }
         }
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,10 +64,20 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     override fun initViews() {
         mFragmentBinding.viewModel = mainViewModel
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        val decorationItem = DividerItemDecoration(requireContext(), DividerItemDecoration.HORIZONTAL)
+        mFragmentBinding.asteroidRecycler.layoutManager = linearLayoutManager
+        mFragmentBinding.asteroidRecycler.addItemDecoration(decorationItem)
+        mFragmentBinding.asteroidRecycler.adapter = asteroidAdapter
+        mainViewModel.asteroidList.observe(viewLifecycleOwner) {
+            asteroidAdapter.submitList(it)
+        }
     }
 
     override fun initActions() {
-
+        asteroidAdapter.onItemClick = {
+            Toast.makeText(requireContext(), it.codeName, Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun initObserver() {

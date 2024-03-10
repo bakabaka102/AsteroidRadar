@@ -7,23 +7,31 @@ import com.udacity.asteroidradar.Constants
 import com.udacity.asteroidradar.api.NasaAsteroidAPI
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.db.AsteroidDatabase
+import com.udacity.asteroidradar.db.AsteroidEntity
 import com.udacity.asteroidradar.db.PictureOfDayEntity
 import com.udacity.asteroidradar.models.Asteroid
 import com.udacity.asteroidradar.models.PictureOfDay
 import com.udacity.asteroidradar.models.convertPictureToPictureDB
 import com.udacity.asteroidradar.models.convertToAsteroidEntity
+import com.udacity.asteroidradar.utils.DateUtils
 import com.udacity.asteroidradar.utils.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
-import java.util.ArrayList
 
 class AsteroidRepository(private val database: AsteroidDatabase) {
 
-    /*    val asteroidList: LiveData<List<AsteroidEntity>> get() = database.asteroidDao.getAllAsteroids()
+    private val currentDate = DateUtils.getCurrentDate()
+    private val endDate = DateUtils.getDatePreviousAWeek()
 
-        val todayAsteroidList: LiveData<List<AsteroidEntity>>
-            get() = database.asteroidDao.getAsteroidsDay(DateUtils.getCurrentDate())*/
+    val weekAsteroids: LiveData<List<AsteroidEntity>> =
+        database.asteroidDao.getAsteroidsGapDate(currentDate, endDate)
+
+    val todayAsteroidList: LiveData<List<AsteroidEntity>>
+        get() = database.asteroidDao.getAsteroidsDay(DateUtils.getCurrentDate())
+
+    val allAsteroidList: LiveData<List<AsteroidEntity>>
+        get() = database.asteroidDao.getAllAsteroids()
 
     val pictureOfDay: LiveData<PictureOfDayEntity> get() = database.pictureOfDayDao.getPictureOfDay()
 
@@ -35,7 +43,7 @@ class AsteroidRepository(private val database: AsteroidDatabase) {
                         .also {
                             Logger.d("_pictureOfDay has value: $it")
                         }
-                val picture : PictureOfDay =
+                val picture: PictureOfDay =
                     Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
                         .adapter(PictureOfDay::class.java).fromJson(responseData)
                         ?: PictureOfDay(

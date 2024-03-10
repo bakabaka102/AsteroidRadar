@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.api
+package com.udacity.asteroidradar.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -7,7 +7,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import com.udacity.asteroidradar.Constants
-import com.udacity.asteroidradar.db.PictureOfDayEntity
 
 @Dao
 interface IPictureOfDayDao {

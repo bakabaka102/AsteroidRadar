@@ -15,11 +15,11 @@ interface IAsteroidDao {
     @Query("SELECT * FROM $ASTEROID_TABLE ORDER BY $COLUMN_CLOSE_APPROACH_DATE DESC")
     fun getAllAsteroids(): LiveData<List<AsteroidEntity>>
 
-    @Query("SELECT * FROM $ASTEROID_TABLE WHERE $COLUMN_CLOSE_APPROACH_DATE = :startDate ORDER BY $COLUMN_CLOSE_APPROACH_DATE DESC")
-    fun getAsteroidsDay(startDate: String): LiveData<List<AsteroidEntity>>
+    @Query("SELECT * FROM $ASTEROID_TABLE WHERE $COLUMN_CLOSE_APPROACH_DATE = :closeApproachDate ORDER BY $COLUMN_CLOSE_APPROACH_DATE DESC")
+    fun getAsteroidsDay(closeApproachDate: String): LiveData<List<AsteroidEntity>>
 
     @Query("SELECT * FROM $ASTEROID_TABLE WHERE $COLUMN_CLOSE_APPROACH_DATE BETWEEN :startDate AND :endDate ORDER BY $COLUMN_CLOSE_APPROACH_DATE DESC")
-    fun getAsteroidsDate(startDate: String, endDate: String): LiveData<List<AsteroidEntity>>
+    fun getAsteroidsGapDate(startDate: String, endDate: String): LiveData<List<AsteroidEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg asteroid: AsteroidEntity)
