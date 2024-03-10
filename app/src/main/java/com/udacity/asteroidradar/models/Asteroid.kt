@@ -31,6 +31,19 @@ fun Asteroid.convertToAsteroidEntity(): AsteroidEntity {
     )
 }
 
+fun AsteroidEntity.convertToAsteroid(): Asteroid {
+    return Asteroid(
+        id = this.id,
+        codename = this.codeName,
+        closeApproachDate = this.closeApproachDate,
+        absoluteMagnitude = this.absoluteMagnitude,
+        estimatedDiameter = this.estimatedDiameter,
+        relativeVelocity = this.relativeVelocity,
+        distanceFromEarth = this.distanceFromEarth,
+        isPotentiallyHazardous = this.isPotentiallyHazardous,
+    )
+}
+
 fun List<Asteroid>.convertToAsteroidEntity(): List<AsteroidEntity> {
     return this.map { asteroid ->
         AsteroidEntity(

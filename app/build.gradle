@@ -17,6 +17,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //Hide Value of API key
+        buildConfigField "String", "VALUE_API_KEY", "\""+ apiKeyValue() +"\""
     }
     buildTypes {
         release {
@@ -34,6 +36,16 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+}
+
+def apiKeyValue() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    String apiKeyValue = properties.getProperty("value_api_key")
+    if (apiKeyValue == null) {
+        throw new GradleException("")
+    }
+    return apiKeyValue
 }
 
 dependencies {

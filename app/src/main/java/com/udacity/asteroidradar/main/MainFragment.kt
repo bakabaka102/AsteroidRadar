@@ -9,12 +9,14 @@ import android.widget.Toast
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.basecontent.BaseFragment
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 import com.udacity.asteroidradar.db.AsteroidDataType
+import com.udacity.asteroidradar.models.convertToAsteroid
 
 class MainFragment : BaseFragment<FragmentMainBinding>() {
 
@@ -75,6 +77,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     override fun initActions() {
         asteroidAdapter.onItemClick = {
             Toast.makeText(requireContext(), it.codeName, Toast.LENGTH_SHORT).show()
+            findNavController().navigate(MainFragmentDirections.actionShowDetail(it.convertToAsteroid()))
         }
     }
 

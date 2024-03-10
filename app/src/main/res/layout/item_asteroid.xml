@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/itemAsteroidName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/dimen_6dp"
             android:text="@{asteroid.codeName}"
@@ -26,25 +26,28 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Asteroid name" />
+            tools:text="Asteroid name"
+            tools:textColor="@color/color_red" />
 
         <TextView
+
             android:id="@+id/itemAsteroidDate"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_6dp"
             android:padding="@dimen/dimen_6dp"
             android:text="@{asteroid.closeApproachDate}"
             android:textColor="@color/color_d2d2d2"
             android:textSize="@dimen/dimen_14sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/itemAsteroidName"
             app:layout_constraintTop_toBottomOf="@id/itemAsteroidName"
-            tools:text="1970-01-01" />
+            tools:text="2024" />
 
         <ImageView
             android:id="@+id/itemAsteroidHazardIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_8dp"
             android:contentDescription="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

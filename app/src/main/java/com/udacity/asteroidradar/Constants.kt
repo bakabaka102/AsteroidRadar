@@ -23,7 +23,7 @@ object Constants {
 
     //Retrofit
     const val BASE_URL = "https://api.nasa.gov/"
-    const val VALUE_OF_API_KEY = "Wm9fMUOloYCkeBxLuGBRL9lCyU1sAXrZeFNHjdeZ"
+    const val VALUE_OF_API_KEY = BuildConfig.VALUE_API_KEY
     const val API_KEY = "api_key"
     const val ALL_ASTEROIDS = "neo/rest/v1/feed"
     const val PICTURE_OF_DAY = "planetary/apod"
