@@ -10,8 +10,7 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.basecontent.BaseFragment
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
@@ -66,10 +65,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     override fun initViews() {
         mFragmentBinding.viewModel = mainViewModel
-        val linearLayoutManager = LinearLayoutManager(requireContext())
-        val decorationItem =
-            DividerItemDecoration(requireContext(), DividerItemDecoration.HORIZONTAL)
-        mFragmentBinding.asteroidRecycler.layoutManager = linearLayoutManager
+        val layoutManager = GridLayoutManager(requireContext(), 1)
+        //val decorationItem = DividerItemDecoration(requireContext(), layoutManager.orientation)
+        val decorationItem = DividerItem(R.color.color_ffff, 2)
+        mFragmentBinding.asteroidRecycler.layoutManager = layoutManager
         mFragmentBinding.asteroidRecycler.addItemDecoration(decorationItem)
         mFragmentBinding.asteroidRecycler.adapter = asteroidAdapter
     }
