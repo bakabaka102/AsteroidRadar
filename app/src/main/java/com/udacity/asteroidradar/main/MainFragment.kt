@@ -16,6 +16,9 @@ import com.udacity.asteroidradar.basecontent.BaseFragment
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 import com.udacity.asteroidradar.db.AsteroidDataType
 import com.udacity.asteroidradar.models.convertToAsteroid
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainFragment : BaseFragment<FragmentMainBinding>() {
 
@@ -78,6 +81,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             Toast.makeText(requireContext(), it.codeName, Toast.LENGTH_SHORT).show()
             findNavController().navigate(MainFragmentDirections.actionShowDetail(it.convertToAsteroid()))
         }
+        mFragmentBinding.swipeMain.setOnRefreshListener {
+            mainViewModel.loadData()
+            CoroutineScope(Dispatchers.Main).launch {
+                mFragmentBinding.swipeMain.isRefreshing = false
+            }
+        }
+
     }
 
     override fun initObserver() {
