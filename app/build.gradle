@@ -52,6 +52,8 @@ dependencies {
     // Design
     implementation "androidx.appcompat:appcompat:$version_appcompat"
     implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
+    //swiperefreshlayout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
 
     // Core with Ktx
     implementation "androidx.core:core-ktx:$version_core"
