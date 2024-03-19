@@ -12,10 +12,12 @@ import com.udacity.asteroidradar.utils.Logger
 fun ImageView.bindAsteroidStatusImage(isHazardous: Boolean) {
     if (isHazardous) {
         this.setImageResource(R.drawable.ic_status_potentially_hazardous)
-        this.contentDescription = this.context.getString(R.string.potentially_hazardous_asteroid_icon)
+        this.contentDescription =
+            this.context.getString(R.string.potentially_hazardous_asteroid_icon)
     } else {
         this.setImageResource(R.drawable.ic_status_normal)
-        this.contentDescription = this.context.getString(R.string.not_potentially_hazardous_asteroid_icon)
+        this.contentDescription =
+            this.context.getString(R.string.not_potentially_hazardous_asteroid_icon)
     }
 }
 
@@ -32,12 +34,12 @@ fun View.statusIconLoading(data: List<AsteroidEntity>?) {
 fun ImageView.bindDetailsStatusImage(isHazardous: Boolean) {
     if (isHazardous) {
         this.setImageResource(R.drawable.asteroid_hazardous)
-        this.context.getString(
+        this.contentDescription = this.context.getString(
             R.string.potentially_hazardous_asteroid_image
         )
     } else {
         this.setImageResource(R.drawable.asteroid_safe)
-        this.context.getString(
+        this.contentDescription = this.context.getString(
             R.string.not_hazardous_asteroid_image
         )
     }
